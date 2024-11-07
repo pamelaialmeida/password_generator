@@ -24,13 +24,13 @@ pipeline{
 
         stage('Staging'){
             steps{
-            sh 'firebase deploy -P testing-replica-49abd --token "$FIREBASE_DEPLOY_TOKEN"'
+            sh 'firebase deploy -P staging-replica-6d587 --token "$FIREBASE_DEPLOY_TOKEN"'
             }
         }
 
         stage('Production'){
             steps{
-            sh 'firebase deploy -P testing-replica-49abd --token "$FIREBASE_DEPLOY_TOKEN"'
+            sh 'firebase deploy -P production-replica-914e0 --token "$FIREBASE_DEPLOY_TOKEN"'
             }
         }
     }
