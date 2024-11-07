@@ -24,7 +24,7 @@ pipeline{
 
         stage('Staging'){
             steps{
-            sh 'firebase deploy -P password-generator-staging --token "$FIREBASE_DEPLOY_TOKEN"'
+            sh 'firebase deploy -P testing-replica-49abd --token "$FIREBASE_DEPLOY_TOKEN"'
             }
         }
 
