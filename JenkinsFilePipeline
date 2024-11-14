@@ -1,40 +1,43 @@
- pipeline{
+pipeline{
     agent {
-     docker {
-	image 'node:18.17.1-alpine3-18'
-     }	
+        docker {
+            image 'node:18.17.1-alpine3.18'
+        }
     }
 
     environment {
-      FIREBASE_DEPLOY_TOKEN = credentials('firebase-token')
+    	FIREBASE_DEPLOY_TOKEN = credentials('firebase-token')
     }
 
     stages{
         stage('Building'){
             steps{
-             echo 'Building stage'
-	     sh 'docker --version'
-	   }
+            	sh 'npm install -g firebase-tools'
+		echo 'Docker version:'
+		sh 'sudo docker --version'
+            }
         } 
 
          stage('Testing'){
             steps{
-              echo 'Testing stage'
-              sh 'npm --version'
+            	echo 'This is testing'
+		echo 'npm version:'
+		sh 'sudo npm --version'
             }
         }
 
         stage('Staging'){
             steps{
-             echo 'Stating stage'
-             sh 'firebase --version'
+            	sh 'firebase deploy -P staging-replica-6d587 --token "$FIREBASE_DEPLOY_TOKEN"'
+		echo 'Firebase version:'
+		sh 'sudo firebase --version'
             }
         }
 
         stage('Production'){
             steps{
-             sh 'firebase deploy -P production-replica-914e0 --token "$FIREBASE_DEPLOY_TOKEN"'
+            	sh 'firebase deploy -P production-replica-914e0 --token "$FIREBASE_DEPLOY_TOKEN"'
             }
         }
     }
-}
+}	
