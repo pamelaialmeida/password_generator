@@ -14,8 +14,8 @@ pipeline{
         stage('Building'){
             steps{
             	sh 'npm install -g firebase-tools'
-		echo 'Docker version:'
-		sh 'docker --version'
+		//echo 'Docker version:'
+		//sh 'docker --version'
             }
         } 
 
